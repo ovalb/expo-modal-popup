@@ -1,14 +1,27 @@
 import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import { TypeEnum } from "./TypeEnum";
 
-export const ErrorModal = ({ isOpen, setIsOpen, errorMsg, type }) => {
+type ModalProps = {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+  errorMsg: string;
+  type: TypeEnum;
+};
+
+export const ModalPopup = ({
+  isOpen,
+  setIsOpen,
+  errorMsg,
+  type,
+}: ModalProps) => {
   const ModalIcon = () => {
     switch (type) {
-      case "error":
+      case TypeEnum.error:
         return <MaterialIcons name="error-outline" size={24} color="red" />;
-      case "warning":
+      case TypeEnum.warning:
         return <AntDesign name="warning" size={20} color="#AB7A00" />;
-      case "success":
+      case TypeEnum.success:
         return <AntDesign name="checkcircleo" size={20} color="green" />;
       default:
         return <View></View>;
@@ -17,11 +30,11 @@ export const ErrorModal = ({ isOpen, setIsOpen, errorMsg, type }) => {
 
   const modalColor = () => {
     switch (type) {
-      case "error":
+      case TypeEnum.error:
         return { color: "red" };
-      case "warning":
+      case TypeEnum.warning:
         return { color: "#AB7A00" };
-      case "success":
+      case TypeEnum.success:
         return { color: "green" };
       default:
         return { color: "black" };

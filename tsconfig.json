@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "target": "es5",
+    "module": "node16",
+    "declaration": true,
+    "outDir": "./lib",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "noImplicitAny": false
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "**/__tests__/*"]
+}

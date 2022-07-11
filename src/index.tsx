@@ -1,22 +1,32 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { ErrorModal } from "./ErrorModal.js";
+import { ModalPopup } from "./ModalPopup";
+import { TypeEnum } from "./TypeEnum";
+export { TypeEnum } from "./TypeEnum";
 
-const ModalContext = createContext();
+const ModalContext = createContext<ProviderType>({ openModal: () => {} });
 
 export const useModal = () => {
   return useContext(ModalContext);
 };
 
-export const ModalProvider = ({ children }) => {
+type ProviderType = {
+  openModal: (errorMsg: string, type: TypeEnum) => void;
+};
+
+type Props = {
+  children: React.ReactNode;
+};
+
+export const ModalProvider = ({ children }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
-  const [type, setType] = useState("");
+  const [type, setType] = useState<TypeEnum>(TypeEnum.error);
 
   /** Opens a global modal for three seconds
    * @param {string} message - Message to show
    * @param {string} type - Could be either: 'error|warning|success'
    */
-  const openModal = (message, type) => {
+  const openModal = (message: string, type: TypeEnum) => {
     // I think I might need a reducer because I want it to cause only one rerendering
     // while (!isOpen);
 
@@ -43,7 +53,7 @@ export const ModalProvider = ({ children }) => {
 
   return (
     <ModalContext.Provider value={value}>
-      <ErrorModal
+      <ModalPopup
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         errorMsg={message}
