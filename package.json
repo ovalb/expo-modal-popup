@@ -1,0 +1,15 @@
+{
+  "name": "expo-modal-popup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.jsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "giorgio.valbonesi@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "@expo/vector-icons": "^13.0.0",
+    "react-native": "^0.69.1"
+  }
+}
